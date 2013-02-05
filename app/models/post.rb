@@ -3,4 +3,7 @@ class Post < ActiveRecord::Base
   belongs_to :author
   validates :title, :presence => true
   validates :author_id, :presence => true
+
+  delegate :name, to: :author, prefix: true, allow_nil: true
+
 end
