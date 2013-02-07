@@ -5,12 +5,12 @@ class AuthorSessionsController < ApplicationController
   end
   
   def create
-    user = Author.authenticate(params[:name], params[:password])
+    user = Author.authenticate(params[:author][:name], params[:author][:password])
     if user
       session[:user_id] = user.id
       redirect_to posts_url, :notice => 'Logged In!'
     else
-      flash.now.alert = 'Invalid name or password'
+      flash[:alert] = 'Invalid name or password'
       redirect_to :action => 'new'
     end
   end

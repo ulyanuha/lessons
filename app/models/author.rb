@@ -7,10 +7,10 @@ class Author < ActiveRecord::Base
   validates :password, :presence=> true, :on => :create
   validates_confirmation_of :password
   
-  def authenticate(name, password)
+  def self.authenticate(name, password)
     author = find_by_name(name)
-    if author && author.password_hash == BCrypt::Engine.hash_secret(password, password_salt)
-      user
+    if author && author.password_hash == BCrypt::Engine.hash_secret(password, author.password_salt)
+      author
     else
       nil
     end
