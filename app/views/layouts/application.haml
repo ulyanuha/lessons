@@ -34,10 +34,15 @@
                 %a{:href => root_path} Home
               %li
                 %a{:href => posts_path} Posts
-              %li
-                %a{:href => signup_path} Sign Up
-              %li
-                %a{:href => signin_path} Sign In
+              - if current_user
+                %li
+                  %a{:href => signout_path} Sign Out
+              -else
+                %li
+                  %a{:href => signup_path} Sign Up
+                %li
+                  %a{:href => signin_path} Sign In
+              
           / /.nav-collapse
     .container
       = show_notice

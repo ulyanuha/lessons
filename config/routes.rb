@@ -4,7 +4,8 @@ Lesson1::Application.routes.draw do
   resources :authors, except: [:new]
   match "/signup" => "authors#new", via: :get, as: :signup
   match "/signin" => "author_sessions#new", via: :get, as: :signin
-
+  match '/signout' => 'author_sessions#destroy', as: :signout
+  resources :author_sessions
 
   root to: 'home#show'
 
