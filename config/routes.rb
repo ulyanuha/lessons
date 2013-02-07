@@ -1,7 +1,9 @@
 Lesson1::Application.routes.draw do
 
   resources :posts
-  resources :authors
+  resources :authors, except: [:new]
+  match "/signup" => "authors#new", via: :get, as: :signup
+  match "/signin" => "author_sessions#new", via: :get, as: :signin
 
 
   root to: 'home#show'
