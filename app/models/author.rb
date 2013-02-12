@@ -3,7 +3,7 @@ class Author < ActiveRecord::Base
   attr_accessor :password
   before_save :encrypt_password
   
-  validates :name, :presence=> true, :uniqueness => true
+  validates :name, :presence=> true, :uniqueness => true, :length => {:maximum => 10}
   validates :password, :presence=> true, :on => :create
   validates_confirmation_of :password
   
